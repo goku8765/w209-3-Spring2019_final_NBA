@@ -41,9 +41,9 @@ plot.y_range.end = max(source.data['y'])*1.05
 def update_plot(attr, old, new):
     #plr = slider.value
     plr = plr_select.value
-    print(plr)
+    #print(plr)
     y = y_select.value
-    print(y)
+    #print(y)
     #plot.xaxis.axis_label = x
     plot.yaxis.axis_label = y
     new_data = {
