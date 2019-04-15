@@ -1,0 +1,5 @@
+# To set a bokeh server locally, open a terminal at the .py and .csv files directory and run
+bokeh serve --show 'filename'.py
+
+# In this case: nba_season_PG_bokeh.py and nba_season_PG_bokeh.csv
+bokeh serve --show nba_season_PG_bokeh.py
