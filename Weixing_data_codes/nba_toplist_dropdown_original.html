@@ -1,0 +1,443 @@
+<html>
+<head>
+    <title>Bind SELECT Element with JSON using JavaScript</title>
+</head>
+<body style="font:14px Calibri;">
+    <!--The SELECT element.-->
+    <select id="sel" onchange="show(this)">
+        <option value="">-- Select --</option>
+    </select>
+
+    <p id="msg"></p>
+<script>
+    function populateSelect() {
+        // THE JSON ARRAY.
+        var toplist = [
+                     {
+                       "Player": "Kevin Garnett",
+                       "Feature": "Scoring: No. 21\nRebound: No. 8\nBlock: No. 18\nSteal: No. 18"
+                     },
+                     {
+                       "Player": "Hakeem Olajuwon",
+                       "Feature": "Scoring: No. 15\nSteal: No. 10\nBlock: No. 1\nRebound: No. 15"
+                     },
+                     {
+                       "Player": "LeBron James",
+                       "Feature": "Scoring: No. 9\nSteal: No. 26\nAssist: No. 16"
+                     },
+                     {
+                       "Player": "Tim Duncan",
+                       "Feature": "Rebound: No. 7\nBlock: No. 5\nScoring: No. 18"
+                     },
+                     {
+                       "Player": "Patrick Ewing",
+                       "Feature": "Rebound: No. 26\nScoring: No. 28\nBlock: No. 7"
+                     },
+                     {
+                       "Player": "Shaquille O'Neal",
+                       "Feature": "Block: No. 8\nScoring: No. 8\nRebound: No. 16"
+                     },
+                     {
+                       "Player": "Elvin Hayes",
+                       "Feature": "Block: No. 28\nScoring: No. 14\nRebound: No. 6"
+                     },
+                     {
+                       "Player": "Moses Malone",
+                       "Feature": "Scoring: No. 11\nBlock: No. 22\nRebound: No. 5"
+                     },
+                     {
+                       "Player": "Kareem Abdul-Jabbar",
+                       "Feature": "Scoring: No. 1\nRebound: No. 3\nBlock: No. 3"
+                     },
+                     {
+                       "Player": "Karl Malone",
+                       "Feature": "Steal: No. 11\nScoring: No. 2\nRebound: No. 9"
+                     },
+                     {
+                       "Player": "Maurice Cheeks",
+                       "Feature": "Steal: No. 5\nAssist: No. 14"
+                     },
+                     {
+                       "Player": "Mark Jackson",
+                       "Feature": "Assist: No. 3\nSteal: No. 23"
+                     },
+                     {
+                       "Player": "Robert Parish",
+                       "Feature": "Block: No. 15\nRebound: No. 11"
+                     },
+                     {
+                       "Player": "Dwight Howard",
+                       "Feature": "Rebound: No. 24\nBlock: No. 21"
+                     },
+                     {
+                       "Player": "Paul Pierce",
+                       "Feature": "Steal: No. 25\nScoring: No. 19"
+                     },
+                     {
+                       "Player": "Magic Johnson",
+                       "Feature": "Steal: No. 28\nAssist: No. 5"
+                     },
+                     {
+                       "Player": "Kobe Bryant",
+                       "Feature": "Steal: No. 16\nScoring: No. 4"
+                     },
+                     {
+                       "Player": "Oscar Robertson",
+                       "Feature": "Scoring: No. 17\nAssist: No. 6"
+                     },
+                     {
+                       "Player": "Gary Payton",
+                       "Feature": "Assist: No. 8\nSteal: No. 3"
+                     },
+                     {
+                       "Player": "John Stockton",
+                       "Feature": "Steal: No. 1\nAssist: No. 1"
+                     },
+                     {
+                       "Player": "Isiah Thomas",
+                       "Feature": "Assist: No. 9\nSteal: No. 19"
+                     },
+                     {
+                       "Player": "Jason Kidd",
+                       "Feature": "Assist: No. 2\nSteal: No. 2"
+                     },
+                     {
+                       "Player": "Rod Strickland",
+                       "Feature": "Steal: No. 20\nAssist: No. 10"
+                     },
+                     {
+                       "Player": "Michael Jordan",
+                       "Feature": "Steal: No. 4\nScoring: No. 5"
+                     },
+                     {
+                       "Player": "Dikembe Mutombo",
+                       "Feature": "Block: No. 2\nRebound: No. 17"
+                     },
+                     {
+                       "Player": "Wilt Chamberlain",
+                       "Feature": "Scoring: No. 3\nRebound: No. 1"
+                     },
+                     {
+                       "Player": "Derek Harper",
+                       "Feature": "Steal: No. 12\nAssist: No. 23"
+                     },
+                     {
+                       "Player": "Charles Barkley",
+                       "Feature": "Rebound: No. 21\nScoring: No. 30"
+                     },
+                     {
+                       "Player": "Allen Iverson",
+                       "Feature": "Scoring: No. 13\nSteal: No. 9"
+                     },
+                     {
+                       "Player": "Tim Hardaway",
+                       "Feature": "Assist: No. 11\nSteal: No. 24"
+                     },
+                     {
+                       "Player": "Walt Bellamy",
+                       "Feature": "Rebound: No. 4\nScoring: No. 26"
+                     },
+                     {
+                       "Player": "Andre Miller",
+                       "Feature": "Steal: No. 27\nAssist: No. 7"
+                     },
+                     {
+                       "Player": "Clyde Drexler",
+                       "Feature": "Steal: No. 6\nScoring: No. 29"
+                     },
+                     {
+                       "Player": "Shawn Marion",
+                       "Feature": "Rebound: No. 29\nSteal: No. 15"
+                     },
+                     {
+                       "Player": "Chris Paul",
+                       "Feature": "Assist: No. 12\nSteal: No. 17"
+                     },
+                     {
+                       "Player": "Baron Davis",
+                       "Feature": "Assist: No. 27\nSteal: No. 30"
+                     },
+                     {
+                       "Player": "Metta World",
+                       "Feature": "Steal: No. 14"
+                     },
+                     {
+                       "Player": "Tony Parker",
+                       "Feature": "Assist: No. 28"
+                     },
+                     {
+                       "Player": "Vince Carter",
+                       "Feature": "Scoring: No. 12"
+                     },
+                     {
+                       "Player": "Tree Rollins",
+                       "Feature": "Block: No. 13"
+                     },
+                     {
+                       "Player": "Theo Ratliff",
+                       "Feature": "Block: No. 10"
+                     },
+                     {
+                       "Player": "Mark Eaton",
+                       "Feature": "Block: No. 4"
+                     },
+                     {
+                       "Player": "Marcus Camby",
+                       "Feature": "Block: No. 11"
+                     },
+                     {
+                       "Player": "Wes Unseld",
+                       "Feature": "Rebound: No. 14"
+                     },
+                     {
+                       "Player": "Mookie Blaylock",
+                       "Feature": "Steal: No. 13"
+                     },
+                     {
+                       "Player": "Steve Nash",
+                       "Feature": "Assist: No. 4"
+                     },
+                     {
+                       "Player": "Muggsy Bogues",
+                       "Feature": "Assist: No. 21"
+                     },
+                     {
+                       "Player": "Terry Porter",
+                       "Feature": "Assist: No. 19"
+                     },
+                     {
+                       "Player": "Ron Harper",
+                       "Feature": "Steal: No. 22"
+                     },
+                     {
+                       "Player": "Nate Thurmond",
+                       "Feature": "Rebound: No. 10"
+                     },
+                     {
+                       "Player": "Stephon Marbury",
+                       "Feature": "Assist: No. 15"
+                     },
+                     {
+                       "Player": "Otis Thorpe",
+                       "Feature": "Rebound: No. 27"
+                     },
+                     {
+                       "Player": "Shawn Bradley",
+                       "Feature": "Block: No. 9"
+                     },
+                     {
+                       "Player": "Pau Gasol",
+                       "Feature": "Block: No. 20"
+                     },
+                     {
+                       "Player": "Paul Silas",
+                       "Feature": "Rebound: No. 22"
+                     },
+                     {
+                       "Player": "Rajon Rondo",
+                       "Feature": "Assist: No. 30"
+                     },
+                     {
+                       "Player": "Scottie Pippen",
+                       "Feature": "Steal: No. 7"
+                     },
+                     {
+                       "Player": "Lenny Wilkens",
+                       "Feature": "Assist: No. 18"
+                     },
+                     {
+                       "Player": "Reggie Miller",
+                       "Feature": "Scoring: No. 25"
+                     },
+                     {
+                       "Player": "Reggie Theus",
+                       "Feature": "Assist: No. 26"
+                     },
+                     {
+                       "Player": "Ray Allen",
+                       "Feature": "Scoring: No. 23"
+                     },
+                     {
+                       "Player": "Adrian Dantley",
+                       "Feature": "Scoring: No. 22"
+                     },
+                     {
+                       "Player": "Larry Nance",
+                       "Feature": "Block: No. 17"
+                     },
+                     {
+                       "Player": "Kevin Willis",
+                       "Feature": "Rebound: No. 13"
+                     },
+                     {
+                       "Player": "Deron Williams",
+                       "Feature": "Assist: No. 13"
+                     },
+                     {
+                       "Player": "Dennis Rodman",
+                       "Feature": "Rebound: No. 25"
+                     },
+                     {
+                       "Player": "David Robinson",
+                       "Feature": "Block: No. 6"
+                     },
+                     {
+                       "Player": "Chauncey Billups",
+                       "Feature": "Assist: No. 24"
+                     },
+                     {
+                       "Player": "Charles Oakley",
+                       "Feature": "Rebound: No. 23"
+                     },
+                     {
+                       "Player": "Carmelo Anthony",
+                       "Feature": "Scoring: No. 24"
+                     },
+                     {
+                       "Player": "Buck Williams",
+                       "Feature": "Rebound: No. 19"
+                     },
+                     {
+                       "Player": "Bob Pettit",
+                       "Feature": "Rebound: No. 20"
+                     },
+                     {
+                       "Player": "Bob Cousy",
+                       "Feature": "Assist: No. 22"
+                     },
+                     {
+                       "Player": "Bill Russell",
+                       "Feature": "Rebound: No. 2"
+                     },
+                     {
+                       "Player": "Bill Bridges",
+                       "Feature": "Rebound: No. 18"
+                     },
+                     {
+                       "Player": "Benoit Benjamin",
+                       "Feature": "Block: No. 24"
+                     },
+                     {
+                       "Player": "Ben Wallace",
+                       "Feature": "Block: No. 16"
+                     },
+                     {
+                       "Player": "Avery Johnson",
+                       "Feature": "Assist: No. 29"
+                     },
+                     {
+                       "Player": "Artis Gilmore",
+                       "Feature": "Block: No. 26"
+                     },
+                     {
+                       "Player": "Alvin Robertson",
+                       "Feature": "Steal: No. 8"
+                     },
+                     {
+                       "Player": "Alonzo Mourning",
+                       "Feature": "Block: No. 14"
+                     },
+                     {
+                       "Player": "Dirk Nowitzki",
+                       "Feature": "Scoring: No. 7"
+                     },
+                     {
+                       "Player": "Dolph Schayes",
+                       "Feature": "Rebound: No. 30"
+                     },
+                     {
+                       "Player": "Dominique Wilkins",
+                       "Feature": "Scoring: No. 10"
+                     },
+                     {
+                       "Player": "Jermaine O'Neal",
+                       "Feature": "Block: No. 19"
+                     },
+                     {
+                       "Player": "Kevin McHale",
+                       "Feature": "Block: No. 30"
+                     },
+                     {
+                       "Player": "Kevin Johnson",
+                       "Feature": "Assist: No. 20"
+                     },
+                     {
+                       "Player": "Alex English",
+                       "Feature": "Scoring: No. 16"
+                     },
+                     {
+                       "Player": "John Lucas",
+                       "Feature": "Assist: No. 25"
+                     },
+                     {
+                       "Player": "John Havlicek",
+                       "Feature": "Scoring: No. 20"
+                     },
+                     {
+                       "Player": "Jerry West",
+                       "Feature": "Scoring: No. 27"
+                     },
+                     {
+                       "Player": "Jerry Lucas",
+                       "Feature": "Rebound: No. 12"
+                     },
+                     {
+                       "Player": "Herb Williams",
+                       "Feature": "Block: No. 27"
+                     },
+                     {
+                       "Player": "Doug Christie",
+                       "Feature": "Steal: No. 29"
+                     },
+                     {
+                       "Player": "Guy Rodgers",
+                       "Feature": "Assist: No. 17"
+                     },
+                     {
+                       "Player": "George Johnson",
+                       "Feature": "Block: No. 12"
+                     },
+                     {
+                       "Player": "Elton Brand",
+                       "Feature": "Block: No. 25"
+                     },
+                     {
+                       "Player": "Elgin Baylor",
+                       "Feature": "Rebound: No. 28"
+                     },
+                     {
+                       "Player": "Elden Campbell",
+                       "Feature": "Block: No. 29"
+                     },
+                     {
+                       "Player": "Eddie Jones",
+                       "Feature": "Steal: No. 21"
+                     },
+                     {
+                       "Player": "Eddie Johnson",
+                       "Feature": "Scoring: No. 6"
+                     },
+                     {
+                       "Player": "Josh Smith",
+                       "Feature": "Block: No. 23"
+                     }
+                    ]
+
+        var ele = document.getElementById('sel');
+        for (var i = 0; i < toplist.length; i++) {
+            // POPULATE SELECT ELEMENT WITH JSON.
+            ele.innerHTML = ele.innerHTML +
+                '<option value="' + toplist[i]['Feature'] + '">' + toplist[i]['Player'] + '</option>';
+        }
+    }
+    populateSelect()
+
+    function show(ele) {
+        // GET THE SELECTED VALUE FROM <select> ELEMENT AND SHOW IT.
+        var msg = document.getElementById('msg');
+        msg.innerHTML = '<b>' + ele.value + '</b>';
+        msg.innerHTML = msg.innerHTML.replace(/\n/g,"<br>");
+    }
+</script>
+</body>
+</html>

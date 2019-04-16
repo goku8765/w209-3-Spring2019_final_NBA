@@ -1,0 +1,175 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable = no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NBA Trading Map</title>
+
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <script src="node_modules/modernizr/modernizr.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+
+    <style type="text/css">
+      .box1 {
+          background:rgba(119,119,119, 0.4);
+          color:#fff;
+          width:700px;
+          height:200px;
+      }
+    </style>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  </head>
+
+
+
+  <body ng-app="app" ng-cloak ng-controller="mainCntrl">
+
+      <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+          <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header page-scroll">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="../index.html">NBA Historical Data Explorer</a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                      <li>
+                          <a href="../index.html">Home</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/goku8765/w209-3-Spring2019_final_NBA">Github Repo</a>
+                      </li>
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Page Header -->
+      <!-- Set your background image for this header on the line below. -->
+      <header class="intro-header" style="background-image: url('twitter1.jpg')">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                      <div class="site-heading">
+                          <div class="box1">
+                              <h1>NBA Trading Map</h1>
+                          </div>
+
+                          <!--hr class="large"-->
+                          <span class="subheading"></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+
+    <div class="row">
+      <div class="large-12 columns">
+        <h1 style="font-size:170%;">NBA Player Transactions <small>(2009 - 2018)</small></h1>
+        <hr/>
+      </div>
+    </div>
+
+    <div class="row" style="position:relative;">
+
+      <aside class="large-2 small-2 columns panel years">
+        <h5>Season</h5>
+        <ul class="side-nav">
+          <li ng-repeat="year in years">
+            <input ng-model="$parent.selected_year" type="radio" name="years" ng-value="year" id="year_{{ year }}">
+            <label for="year_{{ year }}">{{ year }}</label>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="large-7 small-6 columns" role="content">
+        <article>
+          <chord-diagram></chord-diagram>
+          <h6 class="text-center">NBA Transaction in <span>{{ selected_year }}</span></h6>
+        </article>
+      </div>
+
+<aside class="large-3 small-4 columns">
+<h6>Teams</h6>
+<div style="font-size:10px; margin: 15px; opacity: 0.5;">
+<li>OKC - Oklahoma City Thunder</li>
+<li>MEM - Memphis Grizzlies</li>
+<li>NYK - New York Knicks</li>
+<li>CHI - Chicago Bulls</li>
+<li>GSW - Golden State Warriors</li>
+<li>MIL - Milwaukee Bucks</li>
+<li>NOH - New Orleans Hornets</li>
+<li>LAC - LA Clippers</li>
+<li>MIN - Minnesota Timberwolves</li>
+<li>NJN - New Jersey Nets</li>
+<li>WAS - Washington Wizards</li>
+<li>MIA - Miami Heat</li>
+<li>ORL - Orlando Magic</li>
+<li>TOR - Toronto Raptors</li>
+<li>SAC - Sacramento Kings</li>
+<li>POR - Portland Trail Blazers</li>
+<li>CLE - Cleveland Cavaliers</li>
+<li>PHI - Philadelphia 76ers</li>
+<li>SAS - San Antonio Spurs</li>
+<li>CHA - Charlotte Hornets</li>
+<li>HOU - Houston Rockets</li>
+<li>PHX - Phoenix Suns</li>
+<li>BOS - Boston Celtics</li>
+<li>DEN - Denver Nuggets</li>
+<li>DAL - Dallas Mavericks</li>
+<li>LAL - Los Angeles Lakers</li>
+<li>UTA - Utah Jazz</li>
+<li>ATL - Atlanta Hawks</li>
+<li>IND - Indiana Pacers</li>
+<li>DET - Detroit Pistons</li>
+<li>BKN - Brooklyn Nets</li>
+<li>NOP - New Orleans Pelicans</li>
+</div>
+</aside>
+      <fieldset id="tooltip" class="row secondary">
+        <div class="large-12 small-12 columns">
+          <h6>{{ tooltip.sname }} signed {{ qFormat(tooltip.svalue) }} players from {{ tooltip.tname }} </h6>
+        </div>
+        <div class="large-12 small-12 columns">
+          <h6>{{ tooltip.tname }} signed {{ qFormat(tooltip.tvalue) }} players from {{ tooltip.sname }}</h6>
+        </div>
+      </fieldset>
+
+    </div>
+
+    <script src="node_modules/d3/d3.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+    <script src="js/mainController.js"></script>
+    <script src="js/matrixFactory.js"></script>
+    <script src="js/chordDirective.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
